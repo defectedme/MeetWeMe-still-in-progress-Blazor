@@ -1,0 +1,196 @@
+﻿@page "/edituser/{id}"
+@page "/edituser"
+@using static System.Net.WebRequestMethods
+@inherits EditUserBase
+@inject HttpClient Http
+@using System.IO
+@inject IWebHostEnvironment env
+@using MeetWeMe.Model
+
+
+
+
+
+<h3>@PageHeaderText</h3>
+
+
+
+<EditForm Model="@EditUserModel" OnValidSubmit="HandleValidSubmit" >
+        <DataAnnotationsValidator />
+    <hr/>
+    <ValidationSummary />
+
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">
+            Nick
+        </label>
+        <div class="col-sm-10">
+            <InputText id="email" class="form-control" placeholder="Nick"
+                       @bind-Value="EditUserModel.NickName" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">
+            First Name
+        </label>
+        <div class="col-sm 10">
+            <InputText id="firstName" class="form-control" placeholder="First Name"
+                       @bind-Value="EditUserModel.FirstName" />
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label for="confirmEmail" class="col-sm-2 col-form-label">
+             Email
+        </label>
+        <div class="col-sm-10">
+            <InputText id="confirmEmail" class="form-control" placeholder="Email"
+                       @bind-Value="EditUserModel.Email" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="confirmEmail" class="col-sm-2 col-form-label">
+            Confirm Email
+        </label>
+        <div class="col-sm-10">
+            <InputText id="confirmEmail" class="form-control" placeholder="Cofirm Email"
+                       @bind-Value="EditUserModel.ConfirmEmail" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label for="department" class="col-sm-2 col-form-label">
+            I am :) : 
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="department" @bind-Value="EditUserModel.CategoriesId" class="form-control">
+                @foreach (var dept in Categories)
+                {
+                    <option value="@dept.CategoriesId">@dept.CategoriesName</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="gender" class="col-sm-2 col-form-label">
+            Gender
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="gender" @bind-Value="EditUserModel.Gender" class="form-control">
+                @foreach (var gender in Enum.GetValues(typeof(MeetWeMe.Model.Gender)))
+                {
+                    <option value="@gender">@gender</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="confirmEmail" class="col-sm-2 col-form-label">
+            Meeting Place
+        </label>
+        <div class="col-sm-10">
+            <InputText id="confirmEmail" class="form-control" placeholder="Loction"
+                       @bind-Value="EditUserModel.LocationName" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="confirmEmail" class="col-sm-2 col-form-label">
+           City
+        </label>
+        <div class="col-sm-10">
+            <InputText id="confirmEmail" class="form-control" placeholder="City"
+                       @bind-Value="EditUserModel.City" />
+        </div>
+    </div>
+    <div class="form-group row" >
+        <label  for="email" class="col-sm-2 col-form-label">
+            Message
+        </label>
+        <div class="col-sm-10">
+            <InputText  id="email" class="form-control" placeholder="Message"
+                       @bind-Value="EditUserModel.Message" />
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="confirmdate" class="col-sm-2 col-form-label">
+            Meeting Date & Time
+        </label>
+        <div class="col-sm-10">
+            <input type="datetime-local" placeholder="confirm date"
+                   @bind="EditUserModel.DateOfMeeting" />
+            @* <input type="time" placeholder="confirm date"
+                   @bind="EditUserModel.DateOfMeeting" /> *@
+        </div>
+    </div>
+@* 
+    <div class="form-group row">
+        <label for="confirmEmail" class="col-sm-2 col-form-label">
+           Photo
+        </label>
+        <div class="col-sm-10">
+            <InputText typeof="file" id="confirmEmail" class="form-control" placeholder="Photo"
+                       @bind-Value="EditUserModel.PhotoPath" />
+        </div>
+    </div> *@
+
+    <div class="form-group row">
+        <label for="photo" class="col-sm-2 col-form-label">
+            Photo
+        </label>
+        <div class="col-sm-10">
+            <InputFile  OnChange="@LoadFiles" typeof="file-text" id="photo" class="form-control" placeholder="Photo"
+                       accept=".png,.jpg,.jpeg" @bind-Value="EditUserModel.PhotoPath" />
+       @*      <InputText typeof="file" id="confirmEmail" class="form-control" placeholder="Photo"
+                       accept=".png,.jpg,.jpeg" @bind-Value="EditUserModel.PhotoPath" /> *@
+        </div>
+    </div>
+
+@*     <div class="form-group row">
+        <label for="confirmEmail" class="col-sm-2 col-form-label">
+            Photo
+        </label>
+        <div class="col-sm-10">
+            <InputText typeof="file" id="confirmEmail" class="form-control" placeholder="Photo"
+                       accept=".png,.jpg,.jpeg" @bind-Value="EditUserModel.PhotoPath" />
+        </div>
+    </div> *@
+     
+    <button class="btn btn-primary" type="submit">submit</button>
+
+    @if (EditUserModel.UserId > 0)
+    {
+        <button class="btn btn-danger" type="button" @onclick="Delete_Click">delete</button>
+
+
+    }
+
+    @if(errors.Count > 0)
+    {
+        <h2>Errors</h2>
+        <ul class="text-danger">
+            @foreach (var errors in errors)
+            {
+                <li>@errors</li>
+            }
+        </ul>
+    }
+
+
+
+
+
+
+</EditForm>

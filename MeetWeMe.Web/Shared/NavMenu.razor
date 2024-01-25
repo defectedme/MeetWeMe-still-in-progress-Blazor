@@ -1,0 +1,46 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="" style="height: 5px" > <img src="./css/logo/me2we.jpg" style="width:120px; height:40px; padding-left:30%" /></a>
+
+
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+
+        <div class="nav-item px-3" style="padding-top:50px">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+            <NavLink class="nav-link" href="/edituser" onclick="HandelClick" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Create
+            </NavLink>
+        </div>
+
+      
+
+       
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    @inject NavigationManager NavigationManager;
+
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+    private void HandelClick()
+    {
+        NavigationManager.NavigateTo("edituser", true);
+    }
+}

@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net8.0\MeetWeMe.Model.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net8.0\MeetWeMe.Model.GlobalUsings.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net8.0\MeetWeMe.Model.deps.json" />
+    <Content Include="bin\Debug\net8.0\MeetWeMe.Model.runtimeconfig.json" />
+    <Content Include="obj\Debug\net8.0\MeetWeMe.Model.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\MeetWeMe.Model.csproj.nuget.dgspec.json" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0\MeetWeMe.Model.dll" />
+    <None Include="bin\Debug\net8.0\MeetWeMe.Model.pdb" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.assets.cache" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.dll" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net8.0\MeetWeMe.Model.pdb" />
+    <None Include="obj\Debug\net8.0\refint\MeetWeMe.Model.dll" />
+    <None Include="obj\Debug\net8.0\ref\MeetWeMe.Model.dll" />
+    <None Include="obj\MeetWeMe.Model.csproj.nuget.g.props" />
+    <None Include="obj\MeetWeMe.Model.csproj.nuget.g.targets" />
+    <None Include="obj\project.nuget.cache" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.28" />
+    <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+    <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

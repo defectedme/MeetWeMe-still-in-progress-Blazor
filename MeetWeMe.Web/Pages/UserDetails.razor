@@ -1,0 +1,44 @@
+﻿@page "/userdatails/{id}"
+@page "/userdatails"
+
+ @inherits UserDetailsBase
+
+
+
+@if (User == null )
+{
+    <div class="rhombus2">
+        <div class="circle21"></div>
+        <div class="circle22"></div>
+    </div>
+    <div class="text">
+        <p id="text">Loading</p>
+    </div>
+}
+else
+{
+
+
+
+    <div class="row justify-content-center m-3 ">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-body text-center">
+                    <img class="imgRound" alt="Avatar" src="@User.PhotoPath" />
+                    <h1 style="text-transform:uppercase">NICK : @User.NickName</h1>
+                    <h4>Email : @User.Email</h4>
+                    <h4>MEETING PLACE : @User.LocationName</h4>
+                    <h4>I HAVE : @(User.Categories == null ? "N/A" : User.Categories.CategoriesName)</h4>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/" class="btn btn-primary">Back</a>
+                    <a href="@($"edituser/{User.UserId}")" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-danger" type="button" @onclick="(() => DeleteUser(User.UserId))">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

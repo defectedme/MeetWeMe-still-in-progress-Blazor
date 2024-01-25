@@ -1,0 +1,77 @@
+﻿@page "/"
+@inherits UserListBase
+
+
+<nav class="flex-column">
+
+    <div class="nav-item ">
+        <NavLink class="nav-link" href="">
+            <span class="oi oi-box" aria-hidden="true"></span> Meeting Place
+        </NavLink>
+    </div>
+    <div class="form__group field">
+        <input class="form__field" @bind-value="SearchText" @bind-value:event="oninput"
+               placeholder="Search by City / LOCATION" />
+    </div>
+</nav>
+
+
+
+@if (Users == null)
+{
+    <div class="rhombus2">
+        <div class="circle21"></div>
+        <div class="circle22"></div>
+    </div>
+    <div class="text">
+        <p id="text">Loading</p>
+    </div>
+}
+
+
+else
+{
+
+    <div class="card-deck">
+        @foreach (var users in FilteredBycity)
+        {
+
+            <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+                <div class="card-header">
+        
+                    <img class="imgRound"  alt="Avatar" src="@users.PhotoPath" />
+                    <b style="text-transform:uppercase">@users.NickName</b>
+                    <hr />
+                    <b>user id:   </b> <b1>@users.UserId  </b1>
+                    <br />
+      
+
+                    <b>CITY:   </b> <b1>@users.City  </b1>
+                    <br />
+                    <b>MEETING POINT:   </b> <b1>@users.LocationName</b1>
+                    <hr />
+                    <b>MEETING TIME:   </b> <b1>@users.DateOfMeeting  </b1>
+                    <br />
+                    <b>CREATED:   </b> <b1>@users.DateOfBirth</b1>
+
+
+
+                    <div class="card-footer text-center">
+                        <a href="@($"userdatails/{users.UserId}")"
+                           class="btn btn-primary m-1">View</a>
+
+                        <a href="@($"edituser/{users.UserId}")" class="btn btn-primary">Edit</a>
+
+                        <button class="btn btn-danger" type="button" @onclick="(() => DeleteUser(users.UserId))">Delete</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        }
+
+    </div>
+}
